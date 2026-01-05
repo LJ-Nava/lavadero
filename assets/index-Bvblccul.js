@@ -38,11 +38,11 @@
             </svg>
             Ubicación
           </a>
-          <a href="#nosotros">
+          <a href="#promociones">
             <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+              <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/>
             </svg>
-            Nosotros
+            Promociones
           </a>
         </nav>
 
@@ -63,13 +63,13 @@
 
       </div>
     </header>
-  `}function h(){const e=document.getElementById("header");e&&(window.addEventListener("scroll",()=>{window.scrollY>50?e.classList.add("scrolled"):e.classList.remove("scrolled")}),document.querySelectorAll(".header__nav a, .header__logo").forEach(a=>{a.addEventListener("click",i=>{i.preventDefault();const o=a.getAttribute("href"),s=document.querySelector(o);s&&s.scrollIntoView({behavior:"smooth"})})}))}const u="/hero-bg.png";function m(){return`
+  `}function h(){const e=document.getElementById("header");e&&(window.addEventListener("scroll",()=>{window.scrollY>50?e.classList.add("scrolled"):e.classList.remove("scrolled")}),document.querySelectorAll(".header__nav a, .header__logo").forEach(a=>{a.addEventListener("click",i=>{i.preventDefault();const o=a.getAttribute("href"),s=document.querySelector(o);s&&s.scrollIntoView({behavior:"smooth"})})}))}const u="/lavadero/",m=`${u}hero-bg.png`;function g(){return`
     <section id="inicio" class="hero">
 
       <!-- Background -->
       <div class="hero__background">
         <img
-          src="${u}"
+          src="${m}"
           alt="Lavado de autos profesional"
           class="hero__background-image"
         />
@@ -170,7 +170,7 @@
       </a>
 
     </section>
-  `}function g(){document.querySelectorAll(".hero__btn--primary, .hero__scroll").forEach(a=>{a.addEventListener("click",i=>{i.preventDefault();const o=a.getAttribute("href"),s=document.querySelector(o);s&&s.scrollIntoView({behavior:"smooth"})})})}const n=[{id:"moto",name:"Moto",icon:"🏍️"},{id:"auto",name:"Auto",icon:"🚗"},{id:"camioneta",name:"Camioneta",icon:"🚙"}],l=[{id:"basico",name:"Lavado Básico",tagline:"Rápido y efectivo",basePrice:15e3,duration:"20 min",color:"#3b82f6",features:["Lavado exterior completo","Enjuague a presión","Secado con microfibra","Limpieza de vidrios"]},{id:"completo",name:"Lavado Completo",tagline:"El más pedido",basePrice:18e3,duration:"45 min",color:"#e31c25",popular:!0,features:["Todo del básico","Aspirado interior","Limpieza de tablero","Limpieza de tapices","Ambientador"]},{id:"premium",name:"Lavado Premium",tagline:"Tratamiento VIP",basePrice:3e4,duration:"90 min",color:"#f59e0b",features:["Todo del completo","Encerado protector","Acondicionador de cueros","Protección de llantas","Tratamiento anti-lluvia"]},{id:"detallado",name:"Pulido Profesional",tagline:"Restauración total",basePrice:4e4,duration:"3+ hrs",color:"#8b5cf6",features:["Pulido de carrocería","Corrección de pintura","Restauración de faros","Limpieza de motor","Sellador cerámico"]}];let c=n[1];function f(e){return`/${c.id}-${e}.png`}function b(e){return e.toString().replace(/\B(?=(\d{3})+(?!\d))/g,".")}function d(){return n.map(e=>`
+  `}function f(){document.querySelectorAll(".hero__btn--primary, .hero__scroll").forEach(a=>{a.addEventListener("click",i=>{i.preventDefault();const o=a.getAttribute("href"),s=document.querySelector(o);s&&s.scrollIntoView({behavior:"smooth"})})})}const b="/lavadero/",n=[{id:"moto",name:"Moto",icon:"🏍️"},{id:"auto",name:"Auto",icon:"🚗"},{id:"camioneta",name:"Camioneta",icon:"🚙"}],l=[{id:"basico",name:"Lavado Básico",tagline:"Rápido y efectivo",basePrice:15e3,duration:"20 min",color:"#3b82f6",features:["Lavado exterior completo","Enjuague a presión","Secado con microfibra","Limpieza de vidrios"]},{id:"completo",name:"Lavado Completo",tagline:"El más pedido",basePrice:18e3,duration:"45 min",color:"#e31c25",popular:!0,features:["Todo del básico","Aspirado interior","Limpieza de tablero","Limpieza de tapices","Ambientador"]},{id:"premium",name:"Lavado Premium",tagline:"Tratamiento VIP",basePrice:3e4,duration:"90 min",color:"#f59e0b",features:["Todo del completo","Encerado protector","Acondicionador de cueros","Protección de llantas","Tratamiento anti-lluvia"]},{id:"detallado",name:"Pulido Profesional",tagline:"Restauración total",basePrice:4e4,duration:"3+ hrs",color:"#8b5cf6",features:["Pulido de carrocería","Corrección de pintura","Restauración de faros","Limpieza de motor","Sellador cerámico"]}];let c=n[1];function C(e){return`${b}${c.id}-${e}.png`}function z(e){return e.toString().replace(/\B(?=(\d{3})+(?!\d))/g,".")}function d(){return n.map(e=>`
     <button
       class="services__vehicle-btn ${c.id===e.id?"services__vehicle-btn--active":""}"
       data-vehicle="${e.id}"
@@ -179,7 +179,7 @@
       <span class="services__vehicle-name">${e.name}</span>
       ${c.id===e.id?'<span class="services__vehicle-indicator"></span>':""}
     </button>
-  `).join("")}function v(e){const a=e.basePrice,i=f(e.id),o=`Hola! Quiero reservar un *${e.name}* para mi *${c.name}*`,s=`https://wa.me/56912345678?text=${encodeURIComponent(o)}`,r=e.features.map(t=>`
+  `).join("")}function v(e){const a=e.basePrice,i=C(e.id),o=`Hola! Quiero reservar un *${e.name}* para mi *${c.name}*`,s=`https://wa.me/56912345678?text=${encodeURIComponent(o)}`,r=e.features.map(t=>`
     <li>
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
       <span>${t}</span>
@@ -206,7 +206,7 @@
         <div class="services__card-price">
           <div class="services__card-price-value">
             <span class="services__card-currency">$</span>
-            <span class="services__card-amount">${b(a)}</span>
+            <span class="services__card-amount">${z(a)}</span>
           </div>
           <span class="services__card-vehicle">${c.icon} ${c.name}</span>
         </div>
@@ -223,7 +223,7 @@
         </a>
       </div>
     </div>
-  `}function C(){const e=document.querySelector(".services__grid"),a=document.querySelector(".services__vehicle-selector");e&&(e.innerHTML=l.map(v).join("")),a&&(a.innerHTML=d(),p())}function p(){document.querySelectorAll(".services__vehicle-btn").forEach(e=>{e.addEventListener("click",()=>{const a=e.dataset.vehicle;c=n.find(o=>o.id===a),document.querySelectorAll(".services__card").forEach((o,s)=>{o.style.opacity="0",o.style.transform="translateY(20px)",setTimeout(()=>{o.style.opacity="1",o.style.transform="translateY(0)"},s*100)}),C()})})}function z(){return`
+  `}function L(){const e=document.querySelector(".services__grid"),a=document.querySelector(".services__vehicle-selector");e&&(e.innerHTML=l.map(v).join("")),a&&(a.innerHTML=d(),p())}function p(){document.querySelectorAll(".services__vehicle-btn").forEach(e=>{e.addEventListener("click",()=>{const a=e.dataset.vehicle;c=n.find(o=>o.id===a),document.querySelectorAll(".services__card").forEach((o,s)=>{o.style.opacity="0",o.style.transform="translateY(20px)",setTimeout(()=>{o.style.opacity="1",o.style.transform="translateY(0)"},s*100)}),L()})})}function w(){return`
     <section id="servicios" class="services">
       <!-- Decoraciones de agua -->
       <div class="services__bubbles">
@@ -280,7 +280,7 @@
         </div>
       </div>
     </section>
-  `}function L(){p()}function w(){return`
+  `}function M(){p()}function k(){return`
     <section id="ubicacion" class="location">
       <div class="location__container">
         <!-- Header -->
@@ -481,7 +481,7 @@
         </div>
       </div>
     </section>
-  `}function M(){const e=new IntersectionObserver(a=>{a.forEach(i=>{i.isIntersecting&&i.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll(".location__info-card, .parking__feature").forEach(a=>{e.observe(a)})}function k(){return`
+  `}function x(){const e=new IntersectionObserver(a=>{a.forEach(i=>{i.isIntersecting&&i.target.classList.add("visible")})},{threshold:.1});document.querySelectorAll(".location__info-card, .parking__feature").forEach(a=>{e.observe(a)})}function B(){return`
     <section id="promociones" class="promos">
       <div class="promos__container">
         <!-- Header -->
@@ -600,7 +600,7 @@
         </div>
       </div>
     </section>
-  `}function x(){const e=new IntersectionObserver(a=>{a.forEach((i,o)=>{i.isIntersecting&&setTimeout(()=>{i.target.classList.add("visible")},o*100)})},{threshold:.1});document.querySelectorAll(".promos__card").forEach(a=>{e.observe(a)})}function B(){return`
+  `}function S(){const e=new IntersectionObserver(a=>{a.forEach((i,o)=>{i.isIntersecting&&setTimeout(()=>{i.target.classList.add("visible")},o*100)})},{threshold:.1});document.querySelectorAll(".promos__card").forEach(a=>{e.observe(a)})}function E(){return`
     <footer class="footer">
       <!-- Wave decoration -->
       <div class="footer__wave">
@@ -724,13 +724,13 @@
 
       </div>
     </footer>
-  `}function S(){document.querySelectorAll('.footer a[href^="#"]').forEach(e=>{e.addEventListener("click",a=>{a.preventDefault();const i=e.getAttribute("href"),o=document.querySelector(i);o&&o.scrollIntoView({behavior:"smooth"})})})}function y(){const e=document.querySelector("#app");e&&(e.innerHTML=`
+  `}function y(){document.querySelectorAll('.footer a[href^="#"]').forEach(e=>{e.addEventListener("click",a=>{a.preventDefault();const i=e.getAttribute("href"),o=document.querySelector(i);o&&o.scrollIntoView({behavior:"smooth"})})})}function A(){const e=document.querySelector("#app");e&&(e.innerHTML=`
     ${_()}
     <main>
-      ${m()}
-      ${z()}
+      ${g()}
       ${w()}
       ${k()}
+      ${B()}
     </main>
-    ${B()}
-  `,h(),g(),L(),M(),x(),S())}document.addEventListener("DOMContentLoaded",y);
+    ${E()}
+  `,h(),f(),M(),x(),S(),y())}document.addEventListener("DOMContentLoaded",A);
