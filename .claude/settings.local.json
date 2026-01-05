@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.tiktok.com)",
+      "WebFetch(domain:www.washmen.net)",
+      "WebFetch(domain:aprisalavado.com)",
+      "WebFetch(domain:www.interiberica.lat)",
+      "WebFetch(domain:www.lavame.com.co)",
+      "WebFetch(domain:lavafante.co)",
+      "WebFetch(domain:jetwash.cl)",
+      "WebFetch(domain:www.ciclon.cl)",
+      "WebSearch",
+      "WebFetch(domain:colorlib.com)",
+      "WebFetch(domain:www.360detailing.cl)",
+      "WebFetch(domain:squarestash.com)",
+      "WebFetch(domain:www.pexels.com)",
+      "Bash(curl:*)",
+      "Bash(dir:*)",
+      "Bash(findstr:*)",
+      "Bash(sort:*)"
+    ]
+  }
+}
