@@ -1,0 +1,584 @@
+// ============================================
+// LOCATION COMPONENT - Mapa y Contacto
+// ============================================
+
+@use '../variables' as *;
+
+.location {
+  position: relative;
+  padding: 100px 0;
+  background: linear-gradient(180deg, $color-black 0%, lighten($color-black, 3%) 100%);
+}
+
+.location__container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+// Header
+.location__header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.location__label {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba($color-primary, 0.15);
+  border: 1px solid rgba($color-primary, 0.3);
+  border-radius: $radius-full;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: $spacing-lg;
+}
+
+.location__title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: $font-weight-black;
+  color: $color-white;
+  margin-bottom: $spacing-sm;
+  line-height: 1.2;
+
+  .text-accent {
+    color: $color-primary;
+  }
+}
+
+.location__subtitle {
+  font-size: $font-size-lg;
+  color: rgba($color-white, 0.5);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+// Content Grid
+.location__content {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: $spacing-xl;
+  align-items: stretch;
+
+  @media (max-width: $breakpoint-lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Mapa
+.location__map-wrapper {
+  position: relative;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba($color-black, 0.5);
+  border: 1px solid rgba($color-white, 0.1);
+}
+
+.location__map {
+  width: 100%;
+  height: 400px;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    filter: grayscale(100%) contrast(1.1);
+    transition: filter 0.5s ease;
+
+    &:hover {
+      filter: grayscale(0%) contrast(1);
+    }
+  }
+
+  @media (max-width: $breakpoint-lg) {
+    height: 300px;
+  }
+}
+
+.location__map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba($color-primary, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+// Info Cards
+.location__info {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.location__info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  background: rgba($color-white, 0.03);
+  border: 1px solid rgba($color-white, 0.08);
+  border-radius: $radius-lg;
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateX(30px);
+
+  &.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  &:hover {
+    background: rgba($color-white, 0.06);
+    border-color: rgba($color-primary, 0.3);
+    transform: translateX(5px);
+  }
+}
+
+.location__info-icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba($color-primary, 0.2) 0%, rgba($color-primary, 0.05) 100%);
+  border-radius: $radius-md;
+  flex-shrink: 0;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: $color-primary;
+  }
+}
+
+.location__info-content {
+  h3 {
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+    margin-bottom: 4px;
+  }
+
+  p {
+    font-size: $font-size-sm;
+    color: rgba($color-white, 0.6);
+    line-height: 1.5;
+  }
+}
+
+.location__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-lg;
+  background: linear-gradient(135deg, $color-whatsapp 0%, darken($color-whatsapp, 8%) 100%);
+  border-radius: $radius-lg;
+  color: $color-white;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-base;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: 0 4px 20px rgba($color-whatsapp, 0.3);
+  margin-top: auto;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba($color-whatsapp, 0.4);
+  }
+}
+
+// ============================================
+// PARKING SECTION
+// ============================================
+
+.parking {
+  position: relative;
+  padding: 80px 0 100px;
+  background: linear-gradient(180deg, lighten($color-black, 3%) 0%, $color-black 100%);
+  overflow: hidden;
+
+  // Líneas decorativas de estacionamiento
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 100px,
+        rgba($color-white, 0.02) 100px,
+        rgba($color-white, 0.02) 102px
+      );
+    pointer-events: none;
+  }
+}
+
+.parking__container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+.parking__content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: $spacing-2xl;
+  align-items: center;
+
+  @media (max-width: $breakpoint-lg) {
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+  }
+}
+
+// Visual (lado izquierdo)
+.parking__visual {
+  position: relative;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: $breakpoint-lg) {
+    height: 250px;
+    order: 2;
+  }
+}
+
+.parking__icon-main {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background: linear-gradient(135deg, $color-primary 0%, darken($color-primary, 15%) 100%);
+  border-radius: $radius-xl;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 20px 60px rgba($color-primary, 0.4),
+    inset 0 2px 0 rgba($color-white, 0.2);
+  z-index: 10;
+  animation: parking-pulse 3s ease-in-out infinite;
+
+  svg {
+    width: 70px;
+    height: 70px;
+    fill: $color-white;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    width: 100px;
+    height: 100px;
+
+    svg {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+
+@keyframes parking-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow:
+      0 20px 60px rgba($color-primary, 0.4),
+      inset 0 2px 0 rgba($color-white, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow:
+      0 25px 70px rgba($color-primary, 0.5),
+      inset 0 2px 0 rgba($color-white, 0.2);
+  }
+}
+
+.parking__cars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.parking__car {
+  position: absolute;
+  opacity: 0.3;
+  transition: all 0.5s ease;
+
+  svg {
+    fill: rgba($color-white, 0.6);
+  }
+
+  &--1 {
+    top: 20%;
+    left: 10%;
+    width: 60px;
+    animation: car-float 4s ease-in-out infinite;
+  }
+
+  &--2 {
+    bottom: 25%;
+    right: 15%;
+    width: 50px;
+    animation: car-float 4s ease-in-out infinite 1s;
+  }
+
+  &--3 {
+    top: 60%;
+    left: 20%;
+    width: 45px;
+    animation: car-float 4s ease-in-out infinite 2s;
+  }
+}
+
+@keyframes car-float {
+  0%, 100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
+.parking__lines {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 30px;
+
+  span {
+    width: 60px;
+    height: 4px;
+    background: rgba($color-white, 0.1);
+    border-radius: 2px;
+
+    &:nth-child(2) {
+      background: rgba($color-primary, 0.4);
+    }
+  }
+}
+
+// Info (lado derecho)
+.parking__info {
+  @media (max-width: $breakpoint-lg) {
+    order: 1;
+    text-align: center;
+  }
+}
+
+.parking__badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: linear-gradient(135deg, rgba($color-primary, 0.2) 0%, rgba($color-primary, 0.05) 100%);
+  border: 1px solid rgba($color-primary, 0.4);
+  border-radius: $radius-full;
+  font-size: 11px;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  letter-spacing: 2px;
+  margin-bottom: $spacing-md;
+}
+
+.parking__title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: $font-weight-black;
+  color: $color-white;
+  margin-bottom: $spacing-md;
+  line-height: 1.2;
+
+  .text-accent {
+    color: $color-primary;
+  }
+}
+
+.parking__description {
+  font-size: $font-size-base;
+  color: rgba($color-white, 0.6);
+  line-height: 1.7;
+  margin-bottom: $spacing-md;
+  max-width: 450px;
+
+  @media (max-width: $breakpoint-lg) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.parking__hours {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md $spacing-lg;
+  background: linear-gradient(135deg, rgba($color-primary, 0.15) 0%, rgba($color-primary, 0.05) 100%);
+  border: 1px solid rgba($color-primary, 0.3);
+  border-radius: $radius-lg;
+  margin-bottom: $spacing-md;
+
+  @media (max-width: $breakpoint-lg) {
+    justify-content: center;
+  }
+}
+
+.parking__hours-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($color-primary, 0.2);
+  border-radius: $radius-md;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: $color-primary;
+  }
+}
+
+.parking__hours-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.parking__hours-time {
+  font-size: 1.3rem;
+  font-weight: $font-weight-black;
+  color: $color-white;
+}
+
+.parking__hours-label {
+  font-size: $font-size-xs;
+  color: rgba($color-white, 0.5);
+}
+
+.parking__contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-lg;
+  background: linear-gradient(135deg, $color-whatsapp 0%, darken($color-whatsapp, 8%) 100%);
+  color: $color-white;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-sm;
+  text-decoration: none;
+  border-radius: $radius-lg;
+  margin-bottom: $spacing-xl;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba($color-whatsapp, 0.3);
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba($color-whatsapp, 0.4);
+  }
+
+  @media (max-width: $breakpoint-lg) {
+    width: 100%;
+  }
+}
+
+.parking__features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-md;
+
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.parking__feature {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+  background: rgba($color-white, 0.03);
+  border: 1px solid rgba($color-white, 0.06);
+  border-radius: $radius-lg;
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(20px);
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    background: rgba($color-white, 0.06);
+    border-color: rgba($color-primary, 0.3);
+    transform: translateY(-3px);
+  }
+
+  @media (max-width: $breakpoint-lg) {
+    justify-content: flex-start;
+    text-align: left;
+  }
+}
+
+.parking__feature-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba($color-primary, 0.15) 0%, transparent 100%);
+  border-radius: $radius-md;
+  flex-shrink: 0;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    fill: $color-primary;
+  }
+}
+
+.parking__feature-text {
+  h4 {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+    margin-bottom: 2px;
+  }
+
+  p {
+    font-size: $font-size-xs;
+    color: rgba($color-white, 0.5);
+  }
+}
+
+// Responsive
+@media (max-width: $breakpoint-md) {
+  .location {
+    padding: 80px 0;
+  }
+
+  .location__header {
+    margin-bottom: 40px;
+  }
+
+  .parking {
+    padding: 60px 0 80px;
+  }
+}

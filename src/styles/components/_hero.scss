@@ -1,0 +1,427 @@
+// ============================================
+// HERO COMPONENT - Elegant Design
+// ============================================
+
+@use '../variables' as *;
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+// Background
+.hero__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+
+  &-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+      linear-gradient(135deg,
+        rgba($color-black, 0.85) 0%,
+        rgba($color-black, 0.6) 50%,
+        rgba($color-black, 0.75) 100%
+      ),
+      linear-gradient(180deg,
+        rgba($color-primary, 0.1) 0%,
+        transparent 30%,
+        transparent 70%,
+        rgba($color-black, 0.5) 100%
+      );
+  }
+}
+
+// Decorative Elements
+.hero__decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+
+  &-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba($color-primary, 0.15);
+
+    &--1 {
+      width: 600px;
+      height: 600px;
+      top: -200px;
+      right: -200px;
+      animation: pulse-slow 8s ease-in-out infinite;
+    }
+
+    &--2 {
+      width: 400px;
+      height: 400px;
+      bottom: -100px;
+      left: -100px;
+      animation: pulse-slow 6s ease-in-out infinite reverse;
+    }
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.1); opacity: 0.5; }
+}
+
+// Content
+.hero__content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 0 $container-padding;
+  max-width: 900px;
+}
+
+// Badge
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  background: rgba($color-white, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba($color-white, 0.15);
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $radius-full;
+  margin-bottom: $spacing-xl;
+
+  &-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 16px;
+      height: 16px;
+      fill: $color-primary;
+    }
+  }
+
+  span {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: rgba($color-white, 0.9);
+    letter-spacing: 0.5px;
+  }
+
+  &-dot {
+    width: 4px;
+    height: 4px;
+    background: $color-primary;
+    border-radius: 50%;
+  }
+}
+
+// Title
+.hero__title {
+  margin-bottom: $spacing-lg;
+
+  &-top {
+    display: block;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-weight: $font-weight-medium;
+    letter-spacing: 6px;
+    color: rgba($color-white, 0.7);
+    margin-bottom: $spacing-sm;
+    text-transform: uppercase;
+  }
+
+  &-main {
+    display: block;
+    font-size: clamp(3rem, 9vw, 6rem);
+    font-weight: $font-weight-black;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    color: $color-white;
+    text-shadow: 0 4px 30px rgba($color-black, 0.4);
+
+    .text-accent {
+      color: $color-primary;
+      position: relative;
+      display: inline-block;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: $color-primary;
+        border-radius: 2px;
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+// Subtitle
+.hero__subtitle {
+  font-size: clamp($font-size-base, 2vw, $font-size-lg);
+  color: rgba($color-white, 0.7);
+  margin-bottom: $spacing-2xl;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+
+  strong {
+    color: $color-white;
+    font-weight: $font-weight-semibold;
+  }
+}
+
+// Features
+.hero__features {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-2xl;
+  flex-wrap: wrap;
+}
+
+.hero__feature {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+
+  &-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba($color-primary, 0.15);
+    border: 1px solid rgba($color-primary, 0.3);
+    border-radius: $radius-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      fill: $color-primary;
+    }
+  }
+
+  span {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: rgba($color-white, 0.85);
+  }
+
+  &:hover {
+    .hero__feature-icon {
+      background: rgba($color-primary, 0.25);
+      transform: scale(1.05);
+    }
+  }
+}
+
+// CTA Buttons
+.hero__cta {
+  display: flex;
+  gap: $spacing-md;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-xl;
+  border-radius: $radius-lg;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-base;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s;
+  }
+
+  &--primary {
+    background: $color-primary;
+    color: $color-white;
+    box-shadow:
+      0 4px 20px rgba($color-primary, 0.4),
+      inset 0 1px 0 rgba($color-white, 0.2);
+
+    svg {
+      fill: $color-white;
+    }
+
+    &:hover {
+      background: lighten($color-primary, 5%);
+      transform: translateY(-2px);
+      box-shadow:
+        0 8px 30px rgba($color-primary, 0.5),
+        inset 0 1px 0 rgba($color-white, 0.2);
+
+      svg {
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  &--whatsapp {
+    background: rgba($color-white, 0.1);
+    backdrop-filter: blur(10px);
+    color: $color-white;
+    border-color: rgba($color-white, 0.2);
+
+    svg {
+      fill: $color-whatsapp;
+    }
+
+    &:hover {
+      background: $color-whatsapp;
+      border-color: $color-whatsapp;
+
+      svg {
+        fill: $color-white;
+      }
+    }
+  }
+}
+
+// Scroll Indicator
+.hero__scroll {
+  position: absolute;
+  bottom: $spacing-2xl;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-sm;
+  cursor: pointer;
+  padding: $spacing-md;
+  border-radius: $radius-lg;
+  transition: all 0.3s ease;
+  text-decoration: none;
+
+  &:hover {
+    background: rgba($color-white, 0.05);
+
+    span {
+      color: rgba($color-white, 0.9);
+    }
+
+    .hero__scroll-line {
+      background: rgba($color-white, 0.4);
+    }
+
+    .hero__scroll-dot {
+      background: lighten($color-primary, 10%);
+    }
+  }
+
+  span {
+    font-size: $font-size-xs;
+    color: rgba($color-white, 0.5);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  &-line {
+    width: 1px;
+    height: 50px;
+    background: rgba($color-white, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  &-dot {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 10px;
+    background: $color-primary;
+    border-radius: 2px;
+    animation: scroll-line 2s ease-in-out infinite;
+    transition: background 0.3s;
+  }
+}
+
+@keyframes scroll-line {
+  0% { top: 0; opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+// Responsive
+@media (max-width: $breakpoint-md) {
+  .hero__features {
+    gap: $spacing-md;
+  }
+
+  .hero__feature {
+    padding: $spacing-xs $spacing-sm;
+  }
+
+  .hero__btn {
+    padding: $spacing-sm $spacing-lg;
+    font-size: $font-size-sm;
+  }
+
+  .hero__title-top {
+    letter-spacing: 4px;
+  }
+
+  .hero__decoration-circle {
+    display: none;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .hero__feature {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+
+  .hero__cta {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+}
