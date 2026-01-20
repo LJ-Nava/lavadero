@@ -689,7 +689,7 @@
                 </svg>
               </div>
               <div class="parking__hours-info">
-                <span class="parking__hours-time">7:00 PM - 9:00 AM</span>
+                <span class="parking__hours-time">9:00 AM - 7:00 PM</span>
                 <span class="parking__hours-label">Horario de estacionamiento</span>
               </div>
             </div>
