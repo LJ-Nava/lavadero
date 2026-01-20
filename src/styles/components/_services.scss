@@ -1,17 +1,17 @@
 // ============================================
-// SERVICES - Dinámico y Visual de Lavadero
+// SERVICES - Premium Design with 3D Effects
 // ============================================
 
 @use '../variables' as *;
 
 .services {
   position: relative;
-  padding: 100px 0;
+  padding: 120px 0;
   background: linear-gradient(180deg, $color-black 0%, lighten($color-black, 4%) 50%, $color-black 100%);
   overflow: hidden;
 }
 
-// Burbujas decorativas
+// Water Bubbles Background
 .services__bubbles {
   position: absolute;
   top: 0;
@@ -25,58 +25,30 @@
 .services__bubble {
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba($color-primary, 0.3), rgba($color-primary, 0.05));
-  animation: float-bubble 15s ease-in-out infinite;
+  background: radial-gradient(circle at 30% 30%, rgba($color-water, 0.3), rgba($color-water, 0.05));
+  animation: floatBubble 20s ease-in-out infinite;
 
-  &:nth-child(1) {
-    width: 300px;
-    height: 300px;
-    top: -100px;
-    right: -50px;
-    animation-delay: 0s;
-  }
-
-  &:nth-child(2) {
-    width: 200px;
-    height: 200px;
-    bottom: 10%;
-    left: -50px;
-    animation-delay: -3s;
-  }
-
-  &:nth-child(3) {
-    width: 150px;
-    height: 150px;
-    top: 40%;
-    right: 5%;
-    animation-delay: -6s;
-  }
-
-  &:nth-child(4) {
-    width: 100px;
-    height: 100px;
-    bottom: 20%;
-    right: 15%;
-    animation-delay: -9s;
-  }
-
-  &:nth-child(5) {
-    width: 80px;
-    height: 80px;
-    top: 20%;
-    left: 10%;
-    animation-delay: -12s;
+  @for $i from 1 through 8 {
+    &:nth-child(#{$i}) {
+      $size: random(200) + 50px;
+      width: $size;
+      height: $size;
+      left: random(100) * 1%;
+      top: random(100) * 1%;
+      animation-delay: #{$i * -2}s;
+      animation-duration: #{15 + random(10)}s;
+    }
   }
 }
 
-@keyframes float-bubble {
+@keyframes floatBubble {
   0%, 100% {
     transform: translateY(0) scale(1);
-    opacity: 0.3;
+    opacity: 0.2;
   }
   50% {
-    transform: translateY(-30px) scale(1.1);
-    opacity: 0.5;
+    transform: translateY(-40px) scale(1.1);
+    opacity: 0.4;
   }
 }
 
@@ -96,34 +68,46 @@
 }
 
 .services__label {
-  display: inline-block;
-  padding: 8px 20px;
-  background: rgba($color-primary, 0.15);
-  border: 1px solid rgba($color-primary, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-lg;
+  background: rgba($color-water, 0.1);
+  border: 1px solid rgba($color-water, 0.3);
   border-radius: $radius-full;
   font-size: $font-size-sm;
   font-weight: $font-weight-semibold;
-  color: $color-primary;
+  color: $color-water;
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-bottom: $spacing-lg;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
 }
 
 .services__title {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-family: $font-family-heading;
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: $font-weight-black;
   color: $color-white;
-  margin-bottom: $spacing-sm;
+  margin-bottom: $spacing-md;
   line-height: 1.2;
 
-  .text-accent {
-    color: $color-primary;
+  .text-gradient {
+    background: linear-gradient(135deg, $color-water 0%, $color-shine 50%, $color-primary 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
 
 .services__subtitle {
   font-size: $font-size-lg;
-  color: rgba($color-white, 0.5);
+  color: rgba($color-white, 0.6);
 }
 
 // Vehicle Selector
@@ -142,15 +126,15 @@
   display: inline-flex;
   gap: $spacing-sm;
   padding: 6px;
-  background: rgba($color-white, 0.05);
+  background: $glass-bg;
+  backdrop-filter: $glass-blur;
   border-radius: $radius-full;
-  border: 1px solid rgba($color-white, 0.1);
+  border: 1px solid $glass-border;
 
   @media (max-width: $breakpoint-sm) {
     flex-wrap: wrap;
     justify-content: center;
     border-radius: $radius-xl;
-    gap: $spacing-xs;
   }
 }
 
@@ -159,7 +143,7 @@
   display: flex;
   align-items: center;
   gap: $spacing-sm;
-  padding: $spacing-sm $spacing-lg;
+  padding: $spacing-sm $spacing-xl;
   background: transparent;
   border: none;
   border-radius: $radius-full;
@@ -168,6 +152,7 @@
   font-weight: $font-weight-medium;
   cursor: pointer;
   transition: all 0.3s ease;
+  overflow: hidden;
 
   &:hover {
     color: $color-white;
@@ -176,11 +161,11 @@
 
   &--active {
     color: $color-white;
-    background: $color-primary;
+    background: $gradient-primary;
     box-shadow: 0 4px 20px rgba($color-primary, 0.4);
 
     &:hover {
-      background: $color-primary;
+      background: $gradient-primary;
     }
   }
 
@@ -190,13 +175,36 @@
 }
 
 .services__vehicle-icon {
-  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+  }
 }
 
 .services__vehicle-name {
   @media (max-width: 400px) {
     display: none;
   }
+}
+
+.services__vehicle-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 // Grid
@@ -206,11 +214,11 @@
   gap: $spacing-lg;
   margin-bottom: 60px;
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: $breakpoint-sm) {
+  @media (max-width: $breakpoint-md) {
     grid-template-columns: 1fr;
     max-width: 400px;
     margin-left: auto;
@@ -221,43 +229,45 @@
 // Card
 .services__card {
   position: relative;
-  background: rgba($color-white, 0.03);
-  border: 1px solid rgba($color-white, 0.08);
-  border-radius: $radius-xl;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: $radius-2xl;
+  overflow: visible;
+  transition: transform 0.4s $transition-smooth, opacity 0.4s;
+  transform-style: preserve-3d;
+  opacity: 0;
+  transform: translateY(30px);
 
-  &:hover {
-    transform: translateY(-8px);
-    border-color: rgba(var(--card-color), 0.5);
-    box-shadow:
-      0 20px 40px rgba($color-black, 0.4),
-      0 0 40px rgba(var(--card-color), 0.1);
-
-    .services__card-image img {
-      transform: scale(1.1);
-    }
-
-    .services__card-overlay {
-      opacity: 0.4;
-    }
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   &--popular {
-    border-color: rgba($color-primary, 0.4);
-    background: linear-gradient(135deg, rgba($color-primary, 0.08) 0%, rgba($color-white, 0.02) 100%);
+    .services__card-inner {
+      border-color: rgba($color-primary, 0.5);
+      background: linear-gradient(135deg, rgba($color-primary, 0.1) 0%, $glass-bg 100%);
 
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: $color-primary;
-      z-index: 10;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--card-gradient);
+        z-index: 10;
+      }
     }
   }
+}
+
+.services__card-inner {
+  position: relative;
+  background: $glass-bg;
+  backdrop-filter: blur(10px);
+  border: 1px solid $glass-border;
+  border-radius: $radius-2xl;
+  overflow: hidden;
+  z-index: 1;
 }
 
 .services__card-ribbon {
@@ -265,25 +275,39 @@
   top: $spacing-md;
   left: $spacing-md;
   z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 4px;
   padding: 6px 12px;
   background: $color-primary;
   color: $color-white;
   font-size: 11px;
   font-weight: $font-weight-bold;
   border-radius: $radius-md;
-  box-shadow: 0 4px 15px rgba($color-primary, 0.4);
+  box-shadow: 0 4px 15px rgba($color-primary, 0.5);
+
+  svg {
+    width: 12px;
+    height: 12px;
+    fill: $color-shine;
+  }
 }
 
+// Card Image
 .services__card-image {
   position: relative;
-  height: 160px;
+  height: 180px;
   overflow: hidden;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.6s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.1);
   }
 }
 
@@ -294,8 +318,6 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(180deg, transparent 0%, rgba($color-black, 0.8) 100%);
-  opacity: 0.6;
-  transition: opacity 0.3s;
 }
 
 .services__card-duration {
@@ -305,21 +327,36 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 4px 10px;
+  padding: 6px 12px;
   background: rgba($color-black, 0.7);
   backdrop-filter: blur(10px);
   border-radius: $radius-full;
   color: rgba($color-white, 0.9);
-  font-size: 11px;
+  font-size: $font-size-xs;
   font-weight: $font-weight-medium;
 
   svg {
-    width: 12px;
-    height: 12px;
-    fill: currentColor;
+    width: 14px;
+    height: 14px;
+    fill: var(--card-color);
   }
 }
 
+.services__card-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: left 0.5s;
+}
+
+.services__card:hover .services__card-shine {
+  left: 100%;
+}
+
+// Card Body
 .services__card-body {
   padding: $spacing-lg;
 }
@@ -329,7 +366,8 @@
 }
 
 .services__card-title {
-  font-size: $font-size-lg;
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
   font-weight: $font-weight-bold;
   color: $color-white;
   margin-bottom: 4px;
@@ -337,9 +375,11 @@
 
 .services__card-tagline {
   font-size: $font-size-sm;
-  color: rgba($color-white, 0.5);
+  color: var(--card-color);
+  font-weight: $font-weight-medium;
 }
 
+// Price
 .services__card-price {
   display: flex;
   align-items: center;
@@ -356,26 +396,37 @@
 }
 
 .services__card-currency {
-  font-size: $font-size-lg;
+  font-size: $font-size-xl;
   font-weight: $font-weight-bold;
-  color: $color-primary;
+  color: var(--card-color);
 }
 
 .services__card-amount {
-  font-size: 2rem;
+  font-family: $font-family-accent;
+  font-size: $font-size-3xl;
   font-weight: $font-weight-black;
   color: $color-white;
   line-height: 1;
 }
 
 .services__card-vehicle {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
   font-size: $font-size-xs;
   color: rgba($color-white, 0.5);
   background: rgba($color-white, 0.05);
-  padding: 4px 10px;
+  padding: 6px 12px;
   border-radius: $radius-full;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
 }
 
+// Features
 .services__card-features {
   list-style: none;
   padding: 0;
@@ -387,34 +438,38 @@
     gap: $spacing-sm;
     font-size: $font-size-sm;
     color: rgba($color-white, 0.7);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 
     &:last-child {
       margin-bottom: 0;
     }
 
     svg {
-      width: 14px;
-      height: 14px;
-      fill: $color-primary;
+      width: 16px;
+      height: 16px;
+      fill: var(--card-color);
       flex-shrink: 0;
     }
   }
 }
 
+// Button
 .services__card-btn {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: $spacing-sm;
   width: 100%;
   padding: $spacing-md;
-  background: linear-gradient(135deg, $color-whatsapp 0%, darken($color-whatsapp, 8%) 100%);
+  background: $color-whatsapp;
   border-radius: $radius-lg;
   color: $color-white;
+  font-family: $font-family-heading;
   font-weight: $font-weight-bold;
   font-size: $font-size-sm;
   text-decoration: none;
+  overflow: hidden;
   transition: all 0.3s;
   box-shadow: 0 4px 15px rgba($color-whatsapp, 0.3);
 
@@ -424,10 +479,38 @@
     fill: currentColor;
   }
 
+  .services__card-btn-bg {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.4s;
+  }
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba($color-whatsapp, 0.4);
+
+    .services__card-btn-bg {
+      left: 100%;
+    }
   }
+}
+
+// 3D Glow Effect
+.services__card-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: $radius-2xl;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 0;
 }
 
 // Footer Benefits
@@ -436,13 +519,15 @@
   justify-content: center;
   gap: $spacing-2xl;
   flex-wrap: wrap;
-  padding: $spacing-xl;
-  background: rgba($color-white, 0.02);
-  border: 1px solid rgba($color-white, 0.05);
-  border-radius: $radius-xl;
+  padding: $spacing-xl $spacing-2xl;
+  background: $glass-bg;
+  backdrop-filter: $glass-blur;
+  border: 1px solid $glass-border;
+  border-radius: $radius-2xl;
 
   @media (max-width: $breakpoint-md) {
     gap: $spacing-lg;
+    padding: $spacing-lg;
   }
 }
 
@@ -453,10 +538,33 @@
   color: rgba($color-white, 0.7);
   font-size: $font-size-sm;
   font-weight: $font-weight-medium;
+  transition: color 0.3s;
+
+  &:hover {
+    color: $color-white;
+
+    .services__footer-icon {
+      transform: scale(1.1);
+      background: rgba($color-water, 0.2);
+    }
+  }
 }
 
 .services__footer-icon {
-  font-size: 1.3rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($color-water, 0.1);
+  border-radius: $radius-lg;
+  transition: all 0.3s;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: $color-water;
+  }
 }
 
 // Responsive
@@ -475,5 +583,9 @@
 
   .services__grid {
     margin-bottom: 40px;
+  }
+
+  .services__card-image {
+    height: 160px;
   }
 }

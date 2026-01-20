@@ -1,0 +1,429 @@
+// ============================================
+// GALLERY COMPONENT - Before/After Slider
+// ============================================
+
+@use '../variables' as *;
+
+.gallery {
+  position: relative;
+  padding: 120px 0;
+  background: $color-black;
+  overflow: hidden;
+}
+
+// Background Effects
+.gallery__bg-effects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.gallery__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+
+  &--1 {
+    width: 600px;
+    height: 600px;
+    top: -200px;
+    left: -200px;
+    background: $color-water;
+  }
+
+  &--2 {
+    width: 500px;
+    height: 500px;
+    bottom: -150px;
+    right: -150px;
+    background: $color-primary;
+  }
+}
+
+// Container
+.gallery__container {
+  position: relative;
+  z-index: 10;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+// Header
+.gallery__header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.gallery__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-lg;
+  background: rgba($color-shine, 0.1);
+  border: 1px solid rgba($color-shine, 0.3);
+  border-radius: $radius-full;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $color-shine;
+  margin-bottom: $spacing-lg;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+}
+
+.gallery__main-title {
+  font-family: $font-family-heading;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: $font-weight-black;
+  color: $color-white;
+  margin-bottom: $spacing-md;
+
+  .text-gradient {
+    background: linear-gradient(135deg, $color-water 0%, $color-shine 50%, $color-primary 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+.gallery__subtitle {
+  font-size: $font-size-lg;
+  color: rgba($color-white, 0.6);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+// Gallery Grid
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-xl;
+  margin-bottom: 60px;
+
+  @media (max-width: $breakpoint-lg) {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Gallery Item
+.gallery__item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s $transition-smooth;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &:nth-child(2) { transition-delay: 0.1s; }
+  &:nth-child(3) { transition-delay: 0.2s; }
+  &:nth-child(4) { transition-delay: 0.3s; }
+}
+
+// Comparison Container
+.gallery__comparison {
+  position: relative;
+  aspect-ratio: 16/10;
+  border-radius: $radius-2xl;
+  overflow: hidden;
+  cursor: ew-resize;
+  background: $color-gray-900;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    border-radius: $radius-2xl;
+    transition: border-color 0.3s;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  &:hover,
+  &.is-dragging {
+    &::before {
+      border-color: $color-water;
+    }
+
+    .gallery__slider-handle {
+      transform: translate(-50%, -50%) scale(1.1);
+      box-shadow: $glow-water;
+    }
+  }
+}
+
+// Before/After Images
+.gallery__before,
+.gallery__after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%);
+  }
+}
+
+.gallery__before {
+  z-index: 1;
+
+  img {
+    filter: grayscale(60%) brightness(0.7);
+  }
+}
+
+.gallery__after {
+  z-index: 2;
+  clip-path: inset(0 50% 0 0);
+
+  img {
+    filter: saturate(1.1) brightness(1.05);
+  }
+}
+
+// Labels
+.gallery__label {
+  position: absolute;
+  top: $spacing-md;
+  padding: $spacing-xs $spacing-md;
+  border-radius: $radius-md;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 5;
+
+  &--before {
+    left: $spacing-md;
+    background: rgba($color-black, 0.8);
+    color: rgba($color-white, 0.7);
+  }
+
+  &--after {
+    right: $spacing-md;
+    background: $color-water;
+    color: $color-black;
+  }
+}
+
+// Slider
+.gallery__slider {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  z-index: 10;
+  transform: translateX(-50%);
+}
+
+.gallery__slider-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, $color-water, $color-shine, $color-water);
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px rgba($color-water, 0.5);
+}
+
+.gallery__slider-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background: $color-white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: $shadow-lg;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: $color-black;
+
+    &:first-child {
+      margin-right: -6px;
+    }
+
+    &:last-child {
+      margin-left: -6px;
+    }
+  }
+}
+
+// Drag Hint
+.gallery__hint {
+  position: absolute;
+  bottom: $spacing-lg;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  padding: $spacing-xs $spacing-md;
+  background: rgba($color-black, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: $radius-full;
+  transition: opacity 0.3s;
+
+  span {
+    font-size: $font-size-xs;
+    color: rgba($color-white, 0.8);
+    white-space: nowrap;
+  }
+}
+
+// Item Info
+.gallery__info {
+  padding: $spacing-lg 0 0;
+  text-align: center;
+}
+
+.gallery__title {
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-white;
+  margin-bottom: $spacing-xs;
+}
+
+.gallery__service {
+  font-size: $font-size-sm;
+  color: $color-water;
+  font-weight: $font-weight-medium;
+}
+
+// CTA Section
+.gallery__cta {
+  text-align: center;
+  padding: $spacing-2xl;
+  background: $glass-bg;
+  backdrop-filter: $glass-blur;
+  border: 1px solid $glass-border;
+  border-radius: $radius-2xl;
+}
+
+.gallery__cta-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  font-family: $font-family-heading;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  color: $color-white;
+  margin-bottom: $spacing-lg;
+}
+
+.gallery__cta-icon {
+  display: inline-flex;
+  animation: waterDrop 2s ease-in-out infinite;
+
+  svg {
+    width: 28px;
+    height: 28px;
+    fill: $color-water;
+    filter: drop-shadow(0 0 10px rgba($color-water, 0.5));
+  }
+}
+
+@keyframes waterDrop {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.gallery__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-2xl;
+  background: $color-whatsapp;
+  border-radius: $radius-xl;
+  color: $color-white;
+  font-family: $font-family-heading;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  text-decoration: none;
+  transition: all 0.3s $transition-smooth;
+  box-shadow: $shadow-glow-whatsapp;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba($color-whatsapp, 0.5);
+  }
+}
+
+// Responsive
+@media (max-width: $breakpoint-md) {
+  .gallery {
+    padding: 80px 0;
+  }
+
+  .gallery__header {
+    margin-bottom: 40px;
+  }
+
+  .gallery__slider-handle {
+    width: 40px;
+    height: 40px;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  .gallery__cta {
+    padding: $spacing-xl;
+  }
+
+  .gallery__cta-text {
+    font-size: $font-size-lg;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .gallery__comparison {
+    aspect-ratio: 4/3;
+  }
+
+  .gallery__label {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+}

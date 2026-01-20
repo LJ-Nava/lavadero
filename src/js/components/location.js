@@ -13,7 +13,7 @@ export function createLocation() {
             Visítanos en <span class="text-accent">El Cracker</span>
           </h2>
           <p class="location__subtitle">
-            Estamos ubicados en el corazón de la ciudad, fácil acceso y estacionamiento gratuito
+            Estamos ubicados en San Miguel, fácil acceso y estacionamiento gratuito
           </p>
         </header>
 
@@ -22,7 +22,7 @@ export function createLocation() {
           <div class="location__map-wrapper">
             <div class="location__map">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.9977889358847!2d-70.6506138!3d-33.4372737!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c5a4d0e5e5d7%3A0x9a5e5e5e5e5e5e5e!2sAv.%20Providencia%201234%2C%20Providencia%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1704000000000!5m2!1ses!2scl"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3327.8!2d-70.6489!3d-33.4978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c4f5b8d7f5b7%3A0x1234567890abcdef!2sPir%C3%A1mide%20824%2C%20San%20Miguel%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1704000000000!5m2!1ses!2scl"
                 width="100%"
                 height="100%"
                 style="border:0;"
@@ -44,8 +44,8 @@ export function createLocation() {
               </div>
               <div class="location__info-content">
                 <h3>Dirección</h3>
-                <p>Av. Providencia 1234</p>
-                <p>Providencia, Santiago</p>
+                <p>Pirámide 824</p>
+                <p>San Miguel, Santiago</p>
               </div>
             </div>
 

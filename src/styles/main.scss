@@ -1,5 +1,6 @@
 // ============================================
 // MAIN STYLES - LAVADO DE AUTOS EL CRACKER RYD
+// Premium Design System
 // ============================================
 
 // Base
@@ -9,7 +10,10 @@
 // Components
 @use 'components/header';
 @use 'components/hero';
+@use 'components/stats';
 @use 'components/services';
+@use 'components/gallery';
+@use 'components/testimonials';
 @use 'components/location';
 @use 'components/promos';
 @use 'components/footer';
